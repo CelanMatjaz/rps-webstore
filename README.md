@@ -14,8 +14,8 @@ Install npm packages:
 
 Open console and run webpack configs and watch for changes:
 
-> `dev:watch`
+> `yarn dev:watch`
 
 Open another console and run server:
 
-> `dev:server`
+> `yarn dev:server`
