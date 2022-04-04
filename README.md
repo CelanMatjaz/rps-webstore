@@ -19,3 +19,11 @@ Open console and run webpack configs and watch for changes:
 Open another console and run server:
 
 > `dev:server`
+
+## Setup database
+
+Add a postgres connection string to .env file: `postgres://<username>:<password>@localhost:5432/<db-name>`
+
+Create a database with your database name on your local machine
+
+Run command `yarn db:migrate`
