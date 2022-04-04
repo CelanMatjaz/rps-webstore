@@ -14,8 +14,16 @@ Install npm packages:
 
 Open console and run webpack configs and watch for changes:
 
-> `yarn dev:watch`
+> `dev:watch`
 
 Open another console and run server:
 
-> `yarn dev:server`
+> `dev:server`
+
+## Setup database
+
+Add a postgres connection string to .env file: `postgres://<username>:<password>@localhost:5432/<db-name>`
+
+Create a database with your database name on your local machine
+
+Run command `yarn db:migrate`
