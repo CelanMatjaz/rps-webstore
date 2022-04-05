@@ -6,10 +6,10 @@ import App from './App';
 import './scss';
 
 ReactDOM.hydrate(
-  <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
-  </React.StrictMode>,
-  document.querySelector('#root')
+    <React.StrictMode>
+        <Router>
+            <App />
+        </Router>
+    </React.StrictMode>,
+    document.querySelector('#root')
 );
