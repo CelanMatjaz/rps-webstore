@@ -10,39 +10,39 @@ export const dropTables = sql`
 export const createUsers = sql`
 CREATE TABLE users (
   id serial NOT NULL UNIQUE,
-  created_at timestamp without time zone NOT NULL DEFAULT now(),
-  name character varying(255) NOT NULL,
-  last_modified timestamp(6) without time zone NULL,
-  username character varying(255) NOT NULL,
-  password character varying(255) NOT NULL,
-  last_name character varying(255) NULL,
-  mail character varying(255) NULL
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  modified_at TIMESTAMP NULL DEFAULT NOW(),
+  name VARCHAR(255) NOT NULL,
+  username VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NULL,
+  mail VARCHAR(255) NULL
 );`;
 
 export const createItems = sql`
 CREATE TABLE items (
   id serial NOT NULL UNIQUE,
-  time_created timestamp(6) without time zone NOT NULL DEFAULT now(),
-  last_modified timestamp(6) without time zone NOT NULL DEFAULT now(),
-  quantity smallint NOT NULL,
-  name character varying(255) NOT NULL,
-  price real NOT NULL,
-  discount smallint NULL,
-  description text NULL
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  modified_at TIMESTAMP NULL DEFAULT NOW(),
+  quantity SMALLINT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  price REAL NOT NULL,
+  discount INT NULL,
+  description TEXT NULL
 );`;
 
 export const createCarts = sql`
 CREATE TABLE carts (
-  id serial NOT NULL UNIQUE,
-  time_created timestamp(6) without time zone NOT NULL DEFAULT now(),
-  last_modified timestamp(6) without time zone NULL,
-  name character varying(255) NULL
+  id SERIAL NOT NULL UNIQUE,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  modified_at TIMESTAMP NULL DEFAULT NOW(),
+  name VARCHAR(255) NULL
 );`;
 
 export const createCartItems = sql`
 CREATE TABLE cart_items (
-  id serial NOT NULL UNIQUE,
-  cart_id integer NOT NULL REFERENCES carts(id),
-  item_id integer NOT NULL REFERENCES items(id),
-  time_created timestamp(6) without time zone NULL DEFAULT now()
+  id SERIAL NOT NULL UNIQUE,
+  cart_id INT NOT NULL REFERENCES carts(id),
+  item_id INT NOT NULL REFERENCES items(id),
+  quantity SMALLINT NOT NULL
 );`;
