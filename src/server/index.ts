@@ -17,7 +17,8 @@ app.use('/public', express.static(path.resolve(publicFolder)));
 
 //write routes here
 
-app.use('*', frontendRouter);
+app.get('*', frontendRouter);
+app.use('*', (req, res) => res.sendStatus(404));
 
 const PORT = process.env.PORT || 2000;
 app.listen(PORT, () => console.log('Server started on port', PORT));
