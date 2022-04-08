@@ -58,7 +58,7 @@ export const Register: React.FC = (props) => {
               <label htmlFor='lastName'>Last name</label>
               <input
                 required
-                id='name'
+                id='lastName'
                 type='text'
                 value={name}
                 onChange={(e) => setLastname(e.target.value)}
