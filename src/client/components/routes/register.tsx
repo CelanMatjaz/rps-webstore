@@ -60,7 +60,7 @@ export const Register: React.FC = (props) => {
                 required
                 id='lastName'
                 type='text'
-                value={name}
+                value={lastname}
                 onChange={(e) => setLastname(e.target.value)}
               />
             </div>
