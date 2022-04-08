@@ -26,6 +26,9 @@ export const Register: React.FC = (props) => {
         repeat_password: passwordRepeat,
       }),
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
     const { data, error } = (await res.json()) as { data: User; error: string };
 

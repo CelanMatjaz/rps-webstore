@@ -18,6 +18,9 @@ export const Login: React.FC = (props) => {
     const res = await fetch('/api/account/login', {
       body: JSON.stringify({ username, password }),
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
     });
     const { data, error } = (await res.json()) as { data: User; error: string };
 
