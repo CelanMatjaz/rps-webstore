@@ -16,7 +16,7 @@ export const Register: React.FC = (props) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
-    const res = await fetch('/api/account/login', {
+    const res = await fetch('/api/account/register', {
       body: JSON.stringify({
         username,
         name,
