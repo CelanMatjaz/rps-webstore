@@ -16,7 +16,7 @@ export const Register: React.FC = (props) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
-    const res = await fetch('/api/account/login', {
+    const res = await fetch('/api/account/register', {
       body: JSON.stringify({
         username,
         name,
@@ -63,7 +63,7 @@ export const Register: React.FC = (props) => {
                 required
                 id='lastName'
                 type='text'
-                value={name}
+                value={lastname}
                 onChange={(e) => setLastname(e.target.value)}
               />
             </div>
