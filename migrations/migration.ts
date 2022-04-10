@@ -4,6 +4,7 @@ import {
   createCartItems,
   createCarts,
   createItems,
+  createSessions,
   createUsers,
   dropTables,
 } from './queries';
@@ -31,6 +32,11 @@ async function migrate() {
 
   console.log('Creating table cart_items');
   await connection.query(createCartItems);
+
+  console.log('Creating session');
+  for (const q of createSessions) {
+    await connection.query(q);
+  }
 
   await connection.end();
 }

@@ -5,6 +5,7 @@ export const dropTables = sql`
   DROP TABLE IF EXISTS users;
   DROP TABLE IF EXISTS items;
   DROP TABLE IF EXISTS carts;
+  DROP TABLE IF EXISTS sessions;
   `;
 
 export const createUsers = sql`
@@ -46,3 +47,18 @@ CREATE TABLE cart_items (
   item_id INT NOT NULL REFERENCES items(id),
   quantity SMALLINT NOT NULL
 );`;
+
+
+// https://github.com/voxpelli/node-connect-pg-simple/blob/HEAD/table.sql
+export const createSessions = [sql`
+  CREATE TABLE sessions (
+    sid varchar NOT NULL COLLATE "default",
+    sess json NOT NULL,
+    expire timestamp(6) NOT NULL
+  )
+  WITH (OIDS=FALSE);
+`,
+sql`ALTER TABLE "sessions" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;`,
+sql`CREATE INDEX "IDX_session_expire" ON "sessions" ("expire");`
+];
+

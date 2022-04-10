@@ -1,7 +1,7 @@
-interface BaseItem {
+export interface BaseItem {
   id: number;
-  updated_at: string;
-  created_at: string;
+  updated_at: number;
+  created_at: number;
 }
 
 export interface User extends BaseItem {
