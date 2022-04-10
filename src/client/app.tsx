@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
 import Home from './components/routes/home';
 import Layout from './components/layout/layout';
@@ -7,8 +7,27 @@ import Contact from './components/routes/contact';
 import Error404 from './components/routes/error404';
 import Login from './components/routes/login';
 import Register from './components/routes/register';
+import { useAppDisptach } from './store/hooks';
+import { login } from './store/auth';
 
 export const App: React.FC = () => {
+  const dispatch = useAppDisptach();
+  const [isCheckingForLogin, setIsCheckingForLogin] = useState(true);
+
+  useEffect(() => {
+    async function fetchLogin() {
+      const res = await fetch('/api/account/check', { method: 'POST' });
+      if (res.status === 200) {
+        const { data } = await res.json();
+        dispatch(login(data));
+      }
+      setIsCheckingForLogin(false);
+    }
+    fetchLogin();
+  }, []);
+
+  if (isCheckingForLogin) return <div></div>;
+
   return (
     <div className='app'>
       <Routes>
