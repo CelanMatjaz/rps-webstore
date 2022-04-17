@@ -29,7 +29,8 @@ CREATE TABLE items (
   name VARCHAR(255) NOT NULL,
   price REAL NOT NULL,
   discount INT NULL,
-  description TEXT NULL
+  description TEXT NULL,
+  img_path VARCHAR(255)
 );`;
 
 export const createCarts = sql`
@@ -48,9 +49,9 @@ CREATE TABLE cart_items (
   quantity SMALLINT NOT NULL
 );`;
 
-
 // https://github.com/voxpelli/node-connect-pg-simple/blob/HEAD/table.sql
-export const createSessions = [sql`
+export const createSessions = [
+  sql`
   CREATE TABLE sessions (
     sid varchar NOT NULL COLLATE "default",
     sess json NOT NULL,
@@ -58,7 +59,6 @@ export const createSessions = [sql`
   )
   WITH (OIDS=FALSE);
 `,
-sql`ALTER TABLE "sessions" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;`,
-sql`CREATE INDEX "IDX_session_expire" ON "sessions" ("expire");`
+  sql`ALTER TABLE "sessions" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;`,
+  sql`CREATE INDEX "IDX_session_expire" ON "sessions" ("expire");`,
 ];
-
