@@ -27,3 +27,7 @@ Add a postgres connection string to .env file: `postgres://<username>:<password>
 Create a database with your database name on your local machine
 
 Run command `yarn db:migrate`
+
+If you want to run migrations and add default items
+
+Run command `yarn db:migrate:defaults`
