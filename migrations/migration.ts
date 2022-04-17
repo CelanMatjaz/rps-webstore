@@ -1,5 +1,6 @@
 import { createPool, sql } from 'slonik';
 import dotenv from 'dotenv';
+import fs from 'fs';
 import {
   createCartItems,
   createCarts,
@@ -8,6 +9,7 @@ import {
   createUsers,
   dropTables,
 } from './queries';
+import { getDefaultComponents } from './defaultValues';
 
 dotenv.config();
 
@@ -36,6 +38,12 @@ async function migrate() {
   console.log('Creating session');
   for (const q of createSessions) {
     await connection.query(q);
+  }
+
+  console.log('Creating default items');
+  const files = fs.readdirSync('./public/images');
+  for (const file of files) {
+    await connection.query(getDefaultComponents(file));
   }
 
   await connection.end();
