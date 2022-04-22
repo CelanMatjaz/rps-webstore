@@ -17,6 +17,5 @@ function itemify(row: QueryResultRow): Item {
     const { 
         id, quantity, name, price, discount, description, img_path, created_at, modified_at
     } = row;
-    console.log(quantity, name, price, discount, description, img_path, created_at, modified_at)
     return { quantity, name, price, discount, description, img_path, created_at, modified_at } as any
 }
