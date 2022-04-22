@@ -1,8 +1,8 @@
-import { connection } from "../connection";
-import { User, BaseItem, Item } from "../../../common/types";
-import { QueryResultRow, sql } from "slonik";
+import { connection } from '../connection';
+import { User, BaseItem, Item } from '../../../common/types';
+import { QueryResultRow, sql } from 'slonik';
 
-const TABLE_NAME = "items";
+const TABLE_NAME = 'items';
 
 
 export async function getAllItems():Promise<Item[]> { 
@@ -17,5 +17,5 @@ function itemify(row: QueryResultRow): Item {
     const { 
         id, quantity, name, price, discount, description, img_path, created_at, modified_at
     } = row;
-    return { quantity, name, price, discount, description, img_path, created_at, modified_at } as any
+    return {id, quantity, name, price, discount, description, img_path, created_at, modified_at } as any
 }
