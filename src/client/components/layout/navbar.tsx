@@ -1,10 +1,13 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { logout } from '../../store/auth';
 import { useAppDisptach, useAppSelector } from '../../store/hooks';
 
 export const Navbar: React.FC = () => {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  const itemsInCart = useAppSelector(
+    (state) => Object.keys(state.cart.items).length
+  );
   const dispatch = useAppDisptach();
   const navigate = useNavigate();
 
@@ -26,10 +29,10 @@ export const Navbar: React.FC = () => {
               <NavLink to='/account'>Account</NavLink>
             </li>
             <li>
-              <NavLink to='/cart'>Cart</NavLink>
+              <NavLink to='/cart'>Cart ({itemsInCart})</NavLink>
             </li>
             <li>
-              <NavLink
+              <Link
                 to='#'
                 onClick={(e) => {
                   e.preventDefault();
@@ -38,7 +41,7 @@ export const Navbar: React.FC = () => {
                 }}
               >
                 Logout
-              </NavLink>
+              </Link>
             </li>
           </>
         ) : (

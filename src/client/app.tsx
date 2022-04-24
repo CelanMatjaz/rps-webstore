@@ -7,9 +7,12 @@ import Contact from './components/routes/contact';
 import Error404 from './components/routes/error404';
 import Login from './components/routes/login';
 import Register from './components/routes/register';
+import Item from './components/routes/items/item';
+import Account from './components/routes/account';
+import Cart from './components/routes/cart';
+
 import { useAppDisptach } from './store/hooks';
 import { login } from './store/auth';
-import Item from './components/routes/items/item';
 
 export const App: React.FC = () => {
   const dispatch = useAppDisptach();
@@ -39,6 +42,8 @@ export const App: React.FC = () => {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/items/:id' element={<Item />} />
+          <Route path='/account' element={<Account />} />
+          <Route path='/cart' element={<Cart />} />
           <Route path='*' element={<Error404 />} />
         </Route>
       </Routes>
