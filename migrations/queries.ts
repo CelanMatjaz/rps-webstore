@@ -10,7 +10,7 @@ export const dropTables = sql`
 
 export const createUsers = sql`
 CREATE TABLE users (
-  id serial NOT NULL UNIQUE,
+  id serial NOT NULL UNIQUE PRIMARY KEY,
   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
   modified_at TIMESTAMP NULL DEFAULT NOW(),
   name VARCHAR(255) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE users (
 
 export const createItems = sql`
 CREATE TABLE items (
-  id serial NOT NULL UNIQUE,
+  id serial NOT NULL UNIQUE PRIMARY KEY,
   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
   modified_at TIMESTAMP NULL DEFAULT NOW(),
   quantity SMALLINT NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE items (
 
 export const createCarts = sql`
 CREATE TABLE carts (
-  id SERIAL NOT NULL UNIQUE,
+  id SERIAL NOT NULL UNIQUE PRIMARY KEY,
   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
   modified_at TIMESTAMP NULL DEFAULT NOW(),
   name VARCHAR(255) NULL
@@ -43,7 +43,7 @@ CREATE TABLE carts (
 
 export const createCartItems = sql`
 CREATE TABLE cart_items (
-  id SERIAL NOT NULL UNIQUE,
+  id SERIAL NOT NULL UNIQUE PRIMARY KEY,
   cart_id INT NOT NULL REFERENCES carts(id),
   item_id INT NOT NULL REFERENCES items(id),
   quantity SMALLINT NOT NULL
