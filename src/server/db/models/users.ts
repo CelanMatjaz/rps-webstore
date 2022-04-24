@@ -1,11 +1,11 @@
-import { connection } from "../connection";
-import { User, BaseItem } from "../../../common/types";
-import { QueryResultRow, sql } from "slonik";
-import { genSalt, hash, compare } from "bcrypt";
+import { connection } from '../connection';
+import { User, BaseItem } from '../../../common/types';
+import { QueryResultRow, sql } from 'slonik';
+import { genSalt, hash, compare } from 'bcrypt';
 
 // bcrypt
 const saltRounds = 10;
-const TABLE_NAME = "users";
+const TABLE_NAME = 'users';
 
 
 interface QueryCreate extends Omit<User, keyof BaseItem> { 

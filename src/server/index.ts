@@ -8,6 +8,7 @@ import session from 'express-session';
 import path from 'path';
 import frontendRouter from './frontend';
 import userRouter from './router/users';
+import itemRouter from './router/items';
 
 const publicFolder =
   process.env.NODE_ENV === 'production' ? './public' : './build/debug/public';
@@ -52,11 +53,13 @@ app.get('/favicon.ico', (req, res) =>
 );
 app.use('/public', express.static(path.resolve('public')));
 app.use('/public', express.static(path.resolve(publicFolder)));
+app.use('/image', express.static(path.resolve('./public/images')));
 
 app.get('/test', (req, res) => res.json({ test: 'test' }));
 
 //write routes here
 app.use('/api/account/', userRouter);
+app.use('/api/items/', itemRouter);
 app.get('*', frontendRouter);
 app.use('*', (req, res) => res.sendStatus(404));
 
