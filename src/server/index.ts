@@ -53,7 +53,6 @@ app.get('/favicon.ico', (req, res) =>
 );
 app.use('/public', express.static(path.resolve('public')));
 app.use('/public', express.static(path.resolve(publicFolder)));
-app.use('/image', express.static(path.resolve('./public/images')));
 
 app.get('/test', (req, res) => res.json({ test: 'test' }));
 
