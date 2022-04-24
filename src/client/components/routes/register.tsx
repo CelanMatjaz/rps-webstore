@@ -37,7 +37,7 @@ export const Register: React.FC = (props) => {
       return;
     }
 
-    navigate('/');
+    navigate('/login');
   };
 
   return (
