@@ -23,7 +23,10 @@ export const Navbar: React.FC = () => {
         {isLoggedIn ? (
           <>
             <li>
-              <NavLink to='/profile'>Profile</NavLink>
+              <NavLink to='/account'>Account</NavLink>
+            </li>
+            <li>
+              <NavLink to='/cart'>Cart</NavLink>
             </li>
             <li>
               <NavLink

@@ -9,6 +9,7 @@ import Login from './components/routes/login';
 import Register from './components/routes/register';
 import { useAppDisptach } from './store/hooks';
 import { login } from './store/auth';
+import Item from './components/routes/items/item';
 
 export const App: React.FC = () => {
   const dispatch = useAppDisptach();
@@ -37,6 +38,7 @@ export const App: React.FC = () => {
           <Route path='/contact' element={<Contact />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/items/:id' element={<Item />} />
           <Route path='*' element={<Error404 />} />
         </Route>
       </Routes>
