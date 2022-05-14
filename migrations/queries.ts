@@ -6,6 +6,8 @@ export const dropTables = sql`
   DROP TABLE IF EXISTS items;
   DROP TABLE IF EXISTS carts;
   DROP TABLE IF EXISTS sessions;
+  DROP TABLE IF EXISTS categories;
+  DROP TABLE IF EXISTS categoriesItems;
   `;
 
 export const createUsers = sql`
@@ -47,6 +49,21 @@ CREATE TABLE cart_items (
   cart_id INT NOT NULL REFERENCES carts(id),
   item_id INT NOT NULL REFERENCES items(id),
   quantity SMALLINT NOT NULL
+);`;
+
+export const createCategories = sql`
+CREATE TABLE categories (
+  id serial NOT NULL UNIQUE PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);`;
+
+export const createCategoriesItems = sql`
+CREATE TABLE categoriesItems (
+  id serial NOT NULL UNIQUE PRIMARY KEY,
+  categoryID NOT NULL UNIQUE,
+  itemsID NOT NULL UNIQUE,
+  FOREIGN KEY(itemsID) references items(id) on DELETE CASCADE,
+  FOREIGN KEY(categoryID) references categories(id) on DELETE CASCADE
 );`;
 
 // https://github.com/voxpelli/node-connect-pg-simple/blob/HEAD/table.sql
