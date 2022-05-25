@@ -107,7 +107,7 @@ div.auth-form-container{
 
 .featured-products-container{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-template-rows: auto auto;
   grid-gap: 20px;
 }
@@ -195,8 +195,12 @@ div.auth-form-container{
 
 .catalog-container{
   display: grid;
-  grid-template-columns: 300px auto;
+  grid-template-columns: 200px auto;
   margin-top: 40px;
+}
+
+.active-category{
+  color:rgb(255, 116, 116);
 }
 
 .category{

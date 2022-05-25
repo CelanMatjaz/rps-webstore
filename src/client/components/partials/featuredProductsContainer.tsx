@@ -11,9 +11,6 @@ export const FeaturedProductsContainer: React.FC<Props> = ({ categoryId }) => {
 
   useEffect(() => {
     async function fetchProducts() {
-      console.log(
-        '/api/items/all' + (categoryId ? `?categoryId=${categoryId}` : '')
-      );
       const res = await fetch(
         '/api/items/all' + (categoryId ? `?categoryId=${categoryId}` : '')
       );
