@@ -9,6 +9,7 @@ import path from 'path';
 import frontendRouter from './frontend';
 import userRouter from './router/users';
 import itemRouter from './router/items';
+import categoryRouter from './router/categories';
 
 const publicFolder =
   process.env.NODE_ENV === 'production' ? './public' : './build/debug/public';
@@ -59,6 +60,7 @@ app.get('/test', (req, res) => res.json({ test: 'test' }));
 //write routes here
 app.use('/api/account/', userRouter);
 app.use('/api/items/', itemRouter);
+app.use('/api/categories/', categoryRouter);
 app.get('*', frontendRouter);
 app.use('*', (req, res) => res.sendStatus(404));
 

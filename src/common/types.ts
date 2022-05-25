@@ -15,8 +15,13 @@ export interface Item extends BaseItem {
   quantity: number;
   name: number;
   description: number;
-  img_path: string
-  price: number
+  img_path: string;
+  price: number;
+}
+
+export interface Category {
+  id: number;
+  name: string;
 }
 
 export interface Cart extends BaseItem {}
