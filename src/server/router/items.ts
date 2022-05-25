@@ -23,14 +23,15 @@ function correctNumber(sus: any) {
   return Math.round(Math.abs(sus));
 }
 
-router.get<{ categoryId?: number }>('/all', async (req, res) => {
+router.get('/all', async (req, res) => {
   const offset = correctNumber(req.query.page);
   const limit = correctNumber(req.query.page_size);
 
-  if (req.params.categoryId) {
+  if (req.query.categoryId) {
     return res.json({
       data: await getAllItemsByCategory(
-        req.params.categoryId,
+        /// @ts-ignore
+        req.query.categoryId as number,
         correctNumber(req.query.page),
         correctNumber(req.query.page_size)
       ),

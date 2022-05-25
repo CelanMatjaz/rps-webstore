@@ -192,3 +192,20 @@ div.auth-form-container{
     }
   }
 }
+
+.catalog-container{
+  display: grid;
+  grid-template-columns: 300px auto;
+  margin-top: 40px;
+}
+
+.category{
+  padding: 6px;
+  font-size: larger;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    color:#855d5d;
+  }
+}
