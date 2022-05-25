@@ -21,13 +21,13 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItemToCart(state, { payload: item }: { payload: Item }) {
-      if (!state[item.id]) {
-        state[item.id] = {
+      if (state.items[item.id] === undefined) {
+        state.items[item.id] = {
           quantity: 0,
           item,
         };
       }
-      state[item.id].quantity++;
+      state.items[item.id].quantity++;
     },
     removeItemFromCard(state, { payload: itemId }) {
       if (!state[itemId]) return;

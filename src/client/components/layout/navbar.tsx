@@ -5,9 +5,12 @@ import { useAppDisptach, useAppSelector } from '../../store/hooks';
 
 export const Navbar: React.FC = () => {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
-  const itemsInCart = useAppSelector(
-    (state) => Object.keys(state.cart.items).length
-  );
+  const itemsInCart = useAppSelector((state) =>
+    Object.values(state.cart.items)
+  ).reduce((prev, current) => {
+    return prev + current.quantity;
+  }, 0);
+
   const dispatch = useAppDisptach();
   const navigate = useNavigate();
 

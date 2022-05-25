@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import { Item as ItemType } from '../../../../common/types';
+import { addItemToCart } from '../../../store/cart';
+import { useAppDisptach } from '../../../store/hooks';
 
 export const Item: React.FC = (props) => {
   const [item, setItem] = useState<ItemType>(null);
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const dispatch = useAppDisptach();
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -42,7 +47,13 @@ export const Item: React.FC = (props) => {
           </div>
           <div className='product-price float-left'>{item.price}€</div>
           <div className='product-add-to-cart-button float-left'>
-            <button>Add to cart</button>
+            <button
+              onClick={() => {
+                dispatch(addItemToCart(item));
+              }}
+            >
+              Add to cart
+            </button>
           </div>
         </div>
       </div>
