@@ -8,7 +8,7 @@ export const Item: React.FC = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function fetchItem() {
+    const fetchItem = async () => {
       try {
         const res = await fetch(`/api/items/${id}`);
         const data = await res.json();
@@ -19,7 +19,7 @@ export const Item: React.FC = (props) => {
       } catch (e) {
         navigate('/');
       }
-    }
+    };
 
     fetchItem();
   }, []);
