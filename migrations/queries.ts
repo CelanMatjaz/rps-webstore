@@ -7,7 +7,6 @@ export const dropTables = sql`
   DROP TABLE IF EXISTS carts;
   DROP TABLE IF EXISTS sessions;
   DROP TABLE IF EXISTS categories;
-  DROP TABLE IF EXISTS categoriesItems;
   `;
 
 export const createUsers = sql`
@@ -22,6 +21,12 @@ CREATE TABLE users (
   mail VARCHAR(255) NULL
 );`;
 
+export const createCategories = sql`
+CREATE TABLE categories (
+  id serial NOT NULL UNIQUE PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);`;
+
 export const createItems = sql`
 CREATE TABLE items (
   id serial NOT NULL UNIQUE PRIMARY KEY,
@@ -32,7 +37,9 @@ CREATE TABLE items (
   price REAL NOT NULL,
   discount INT NULL,
   description TEXT NULL,
-  img_path VARCHAR(255)
+  category_id INT NOT NULL,
+  img_path VARCHAR(255),
+  FOREIGN KEY (category_id) REFERENCES categories (id) ON DELETE CASCADE
 );`;
 
 export const createCarts = sql`
@@ -49,21 +56,6 @@ CREATE TABLE cart_items (
   cart_id INT NOT NULL REFERENCES carts(id),
   item_id INT NOT NULL REFERENCES items(id),
   quantity SMALLINT NOT NULL
-);`;
-
-export const createCategories = sql`
-CREATE TABLE categories (
-  id serial NOT NULL UNIQUE PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
-);`;
-
-export const createCategoriesItems = sql`
-CREATE TABLE categoriesItems (
-  id serial NOT NULL UNIQUE PRIMARY KEY,
-  categoryID NOT NULL UNIQUE,
-  itemsID NOT NULL UNIQUE,
-  FOREIGN KEY(itemsID) references items(id) on DELETE CASCADE,
-  FOREIGN KEY(categoryID) references categories(id) on DELETE CASCADE
 );`;
 
 // https://github.com/voxpelli/node-connect-pg-simple/blob/HEAD/table.sql

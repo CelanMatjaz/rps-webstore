@@ -4,12 +4,13 @@ import fs from 'fs';
 import {
   createCartItems,
   createCarts,
+  createCategories,
   createItems,
   createSessions,
   createUsers,
   dropTables,
 } from './queries';
-import { getDefaultComponents } from './defaultValues';
+import { getDefaultComponents, categoryNames } from './defaultValues';
 
 dotenv.config();
 
@@ -30,6 +31,9 @@ async function migrate() {
   console.log('Creating table users');
   await connection.query(createUsers);
 
+  console.log('Creating table categories');
+  await connection.query(createCategories);
+
   console.log('Creating table items');
   await connection.query(createItems);
 
@@ -45,10 +49,15 @@ async function migrate() {
   }
 
   if (addDefaults) {
+    console.log('Createing default categories');
+    await connection.query(categoryNames);
+
     console.log('Creating default items');
     const files = fs.readdirSync('./public/images');
     for (const file of files) {
-      await connection.query(getDefaultComponents(file));
+      const randomCategoryId = Math.floor((Math.random() * 10) % 6);
+
+      await connection.query(getDefaultComponents(file, randomCategoryId));
     }
   }
 
