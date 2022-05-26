@@ -6,11 +6,9 @@ dotenv.config();
 import express from 'express';
 import session from 'express-session';
 import path from 'path';
+
+import apiRouter from './apiRouter';
 import frontendRouter from './frontend';
-import userRouter from './router/users';
-import itemRouter from './router/items';
-import categoryRouter from './router/categories';
-import checkoutRouter from './router/checkout';
 
 const publicFolder =
   process.env.NODE_ENV === 'production' ? './public' : './build/debug/public';
@@ -59,10 +57,8 @@ app.use('/public', express.static(path.resolve(publicFolder)));
 app.get('/test', (req, res) => res.json({ test: 'test' }));
 
 //write routes here
-app.use('/api/account/', userRouter);
-app.use('/api/items/', itemRouter);
-app.use('/api/categories/', categoryRouter);
-app.use('/api/checkout/', checkoutRouter);
+
+app.use('/api', apiRouter);
 app.get('*', frontendRouter);
 app.use('*', (req, res) => res.sendStatus(404));
 

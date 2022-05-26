@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { useAppSelector } from '../../store/hooks';
-import PreviousOrders from '../partials/previousOrders';
+import OrdersContainer from '../partials/ordersContainer';
 
 export const Account: React.FC = (props) => {
   const user = useAppSelector((state) => state.auth.user);
@@ -31,7 +31,7 @@ export const Account: React.FC = (props) => {
 
       <div style={{ marginTop: '40px' }}>
         <h3>Previous orders</h3>
-        <PreviousOrders />
+        <OrdersContainer />
       </div>
     </div>
   );

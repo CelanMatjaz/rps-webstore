@@ -14,6 +14,7 @@ import Checkout from './components/routes/checkout';
 
 import { useAppDisptach } from './store/hooks';
 import { login } from './store/auth';
+import Order from './components/routes/order';
 
 export const App: React.FC = () => {
   const dispatch = useAppDisptach();
@@ -46,6 +47,7 @@ export const App: React.FC = () => {
           <Route path='/account' element={<Account />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/checkout' element={<Checkout />} />
+          <Route path='/orders/:id' element={<Order />} />
           <Route path='*' element={<Error404 />} />
         </Route>
       </Routes>

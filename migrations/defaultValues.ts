@@ -7,7 +7,7 @@ export const getDefaultComponents = (imgPath: string, categoryId: number) => {
 
   return sql`
   INSERT INTO items (quantity, name, price, discount, description, img_path, category_id) 
-  VALUES (1, ${filename}, 0, 0, ${filename}, ${filepath}, ${categoryId})`;
+  VALUES (9999, ${filename}, 10, 0, ${filename}, ${filepath}, ${categoryId})`;
 };
 
 export const categoryNames = sql`INSERT INTO categories (name) VALUES ('CPU'), ('Motherboard'), ('PSU'), ('GPU'), ('Case'), ('RAM')`;

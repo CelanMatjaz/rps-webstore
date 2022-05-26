@@ -15,7 +15,7 @@ export const Catalog: React.FC = (props) => {
           <Categories setCategory={setCategory} categoryId={category} />
         </div>
         <div className='products-container'>
-          <ProductsContainer categoryId={category} itemLimit={4} />
+          <ProductsContainer categoryId={category} itemLimit={6} />
         </div>
       </div>
     </div>

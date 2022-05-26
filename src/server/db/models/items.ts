@@ -51,8 +51,18 @@ export async function getAllItemsByCategory(
 }
 
 export const getItemById = async (id: string) => {
-  const res = await connection.maybeOne<Item>(
+  return await connection.maybeOne<Item>(
     sql`SELECT id, quantity, name, price, discount, description, img_path, created_at, modified_at FROM items WHERE id = ${id}`
   );
-  return res;
+};
+
+export const getItemsByIds = async (ids: number[]) => {
+  return (
+    await connection.query<Item>(
+      sql`SELECT id, category_id, quantity, name, price, discount, description, img_path, created_at, modified_at FROM items WHERE id IN (${sql.join(
+        ids,
+        sql`,`
+      )})`
+    )
+  ).rows;
 };

@@ -65,10 +65,12 @@ async function migrate() {
 
     console.log('Creating default items');
     const files = fs.readdirSync('./public/images');
-    for (const file of files) {
-      const randomCategoryId = Math.floor((Math.random() * 10) % 6) + 1;
+    for (let i = 0; i < 10; i++) {
+      for (const file of files) {
+        const randomCategoryId = Math.floor((Math.random() * 10) % 6) + 1;
 
-      await connection.query(getDefaultComponents(file, randomCategoryId));
+        await connection.query(getDefaultComponents(file, randomCategoryId));
+      }
     }
 
     const salt = await genSalt(saltRounds);

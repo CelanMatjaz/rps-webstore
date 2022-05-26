@@ -29,9 +29,7 @@ export const Cart: React.FC = (props) => {
         <div>Current items in cart ({numberOfItemsInCart})</div>
         <div className='cart-items'>
           {Object.values(cartItems).map((item, i) => (
-            <div key={i}>
-              <CartItem cartItem={item} />
-            </div>
+            <CartItem cartItem={item} key={i} />
           ))}
         </div>
       </div>

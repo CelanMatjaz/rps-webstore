@@ -1,17 +1,25 @@
 import React, { useState } from 'react';
-import { useAppSelector } from '../../store/hooks';
+import { useNavigate } from 'react-router';
+import { useAppDisptach, useAppSelector } from '../../store/hooks';
 import Error from '../partials/error';
 
 export const Checkout: React.FC = (props) => {
   const [address, setAddress] = useState('');
   const [paymentInfo, setPaymentInfo] = useState('');
   const [error, setError] = useState(null);
+  const [showMessage, setShowMessage] = useState(false);
+
+  const navigate = useNavigate();
 
   const cartItems = useAppSelector((state) => state.cart.items);
+  const dispatch = useAppDisptach();
 
   return (
     <div className='checkout auth-form-container'>
       <h1>Checkout</h1>
+      {showMessage && (
+        <h2 style={{ margin: '10px 0' }}>Order completed! Redirecting...</h2>
+      )}
 
       <div>{error && <Error error={error} />}</div>
 
@@ -28,15 +36,17 @@ export const Checkout: React.FC = (props) => {
 
           const res = await fetch('/api/checkout', {
             method: 'POST',
-            body: JSON.stringify(items),
+            body: JSON.stringify({ items, address, paymentInfo }),
             headers: {
               'Content-type': 'application/json',
             },
           });
 
           if (res.status === 200) {
-            const data = await res.json();
-            console.log('OK');
+            setShowMessage(true);
+            setTimeout(() => {
+              navigate('/');
+            }, 2000);
           } else {
             try {
               const data = await res.json();
