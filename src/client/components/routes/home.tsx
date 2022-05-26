@@ -1,10 +1,10 @@
 import React from 'react';
-import FeaturedProductsContainer from '../partials/featuredProductsContainer';
+import ProductsContainer from '../partials/productsContainer';
 
 export const Home: React.FC = () => {
   return (
     <div>
-      <FeaturedProductsContainer />
+      <ProductsContainer itemLimit={9} />
     </div>
   );
 };

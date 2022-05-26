@@ -32,7 +32,7 @@ router.get('/all', async (req, res) => {
       data: await getAllItemsByCategory(
         /// @ts-ignore
         req.query.categoryId as number,
-        correctNumber(req.query.page),
+        correctNumber(req.query.page ?? 1),
         correctNumber(req.query.page_size)
       ),
     });

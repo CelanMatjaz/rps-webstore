@@ -4,6 +4,7 @@ body {
   width: 100vw;
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
+  overflow-x: hidden;
 }
 
 * {
@@ -228,3 +229,37 @@ div.auth-form-container{
   }
 
 }
+
+.pagination {
+  margin: 20px 0;
+  display: flex;
+  justify-items: center;
+
+  .pagination-container {
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 2px;
+    border-radius: 6px;
+    overflow: hidden;
+
+    div {
+      background-color: #313131;
+      color: white;
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 24px; 
+      user-select: none;
+    }
+  
+    .pagination-container-button{
+      cursor: pointer;
+  
+      &:hover {
+        background-color: lighten($color: #313131, $amount: 10);
+      }
+    }
+  }
+}
+

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Categories from '../partials/categories';
-import FeaturedProductsContainer from '../partials/featuredProductsContainer';
+import ProductsContainer from '../partials/productsContainer';
 
 export const Catalog: React.FC = (props) => {
   const [category, setCategory] = useState(null);
@@ -15,7 +15,7 @@ export const Catalog: React.FC = (props) => {
           <Categories setCategory={setCategory} categoryId={category} />
         </div>
         <div className='products-container'>
-          <FeaturedProductsContainer categoryId={category} />
+          <ProductsContainer categoryId={category} itemLimit={4} />
         </div>
       </div>
     </div>

@@ -38,8 +38,9 @@ export async function getAllItemsByCategory(
       offset++;
     }
     offset = (offset - 1) * limit;
+
     res = await connection.query<Item>(
-      sql`SELECT id, quantity, name, price, discount, description, img_path, created_at, modified_at FROM items OFFSET ${offset} LIMIT ${limit} WHERE category_id = ${categoryId}`
+      sql`SELECT id, quantity, name, price, discount, description, img_path, created_at, modified_at FROM items WHERE category_id = ${categoryId} OFFSET ${offset} LIMIT ${limit} `
     );
   } else {
     res = await connection.query<Item>(
@@ -49,9 +50,9 @@ export async function getAllItemsByCategory(
   return (res.rows ?? []) as Item[];
 }
 
-export async function getItemById(id: string) {
+export const getItemById = async (id: string) => {
   const res = await connection.maybeOne<Item>(
     sql`SELECT id, quantity, name, price, discount, description, img_path, created_at, modified_at FROM items WHERE id = ${id}`
   );
   return res;
-}
+};

@@ -53,13 +53,13 @@ export async function findUserByUsernameWithPassword(
   return null;
 }
 
-export async function getUserById(id: number): Promise<User> {
+export const getUserById = async (id: number): Promise<User> => {
   const res = await connection.query(sql`SELECT * FROM users WHERE id = ${id}`);
   if (res.rows.length) {
     return usererify(res.rows[0]);
   }
   return null;
-}
+};
 
 function usererify(row: QueryResultRow): User {
   const { id, last_name, mail, name, username, created_at, modified_at } = row;

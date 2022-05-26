@@ -9,8 +9,6 @@ export const Checkout: React.FC = (props) => {
 
   const cartItems = useAppSelector((state) => state.cart.items);
 
-  console.log(error);
-
   return (
     <div className='checkout auth-form-container'>
       <h1>Checkout</h1>
