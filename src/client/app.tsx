@@ -10,6 +10,7 @@ import Register from './components/routes/register';
 import Item from './components/routes/items/item';
 import Account from './components/routes/account';
 import Cart from './components/routes/cart';
+import Checkout from './components/routes/checkout';
 
 import { useAppDisptach } from './store/hooks';
 import { login } from './store/auth';
@@ -44,6 +45,7 @@ export const App: React.FC = () => {
           <Route path='/items/:id' element={<Item />} />
           <Route path='/account' element={<Account />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/checkout' element={<Checkout />} />
           <Route path='*' element={<Error404 />} />
         </Route>
       </Routes>

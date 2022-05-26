@@ -213,3 +213,18 @@ div.auth-form-container{
     color:#855d5d;
   }
 }
+
+.cart{
+
+  a.checkout-link {
+    text-decoration: none;
+    padding: 5px;
+    background-color: #313131;
+    color: white;
+    margin: 10px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+}

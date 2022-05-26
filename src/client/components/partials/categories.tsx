@@ -25,7 +25,7 @@ export const Categories: React.FC<Props> = ({ setCategory, categoryId }) => {
       <h3>Categories</h3>
       <ul>
         <li
-          onClick={() => setCategory()}
+          onClick={() => setCategory(null)}
           className={categoryId === null ? 'active-category' : ''}
         >
           <div className='category'>All categories</div>

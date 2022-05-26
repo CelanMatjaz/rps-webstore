@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Item } from '../../common/types';
 
-interface CardItemType {
+export interface CartItemType {
   quantity: number;
   item: Item;
 }
 
 interface CartState {
   items: {
-    [key: number]: CardItemType;
+    [key: number]: CartItemType;
   };
 }
 
