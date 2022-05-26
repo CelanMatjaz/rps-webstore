@@ -5,6 +5,8 @@ export const dropTables = sql`
   DROP TABLE IF EXISTS users;
   DROP TABLE IF EXISTS items;
   DROP TABLE IF EXISTS carts;
+  DROP TABLE IF EXISTS order_items;
+  DROP TABLE IF EXISTS orders;
   DROP TABLE IF EXISTS sessions;
   DROP TABLE IF EXISTS categories;
   `;
@@ -40,6 +42,28 @@ CREATE TABLE items (
   category_id INT NOT NULL,
   img_path VARCHAR(255),
   FOREIGN KEY (category_id) REFERENCES categories (id) ON DELETE CASCADE
+);`;
+
+export const createOrders = sql`
+CREATE TABLE orders (
+  id SERIAL NOT NULL UNIQUE PRIMARY KEY,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  modified_at TIMESTAMP NULL DEFAULT NOW(),
+  user_id INT NOT NULL
+);`;
+
+export const createOrderItems = sql`
+CREATE TABLE order_items (
+  id SERIAL NOT NULL UNIQUE PRIMARY KEY,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  modified_at TIMESTAMP NULL DEFAULT NOW(),
+  order_id INT NOT NULL,
+  quantity SMALLINT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  price REAL NOT NULL,
+  category_id INT NOT NULL,
+  img_path VARCHAR(255),
+  FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE
 );`;
 
 export const createCarts = sql`
