@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { removeAllItemsFromCart } from '../../store/cart';
 import { useAppDisptach, useAppSelector } from '../../store/hooks';
 import Error from '../partials/error';
 
@@ -44,6 +45,7 @@ export const Checkout: React.FC = (props) => {
 
           if (res.status === 200) {
             setShowMessage(true);
+            dispatch(removeAllItemsFromCart());
             setTimeout(() => {
               navigate('/');
             }, 2000);
